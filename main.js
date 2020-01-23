@@ -15,6 +15,13 @@ var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={
 	subdomains:['mt0','mt1','mt2','mt3']
 });
 
+//var roads = L.gridLayer.googleMutant({
+//	type: 'roadmap'	// valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+//});
+
+var osmStreets = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; DAI(derivado de OSM)'
+});
 
 var mymap;
 var mapa;
@@ -23,25 +30,17 @@ var sacar_foto;
 window.addEventListener("load",function(){
 	console.log("prueba");
 
-	mapa = document.querySelector("#mapid");
-	
-	//mymap = L.map("mapid").setView([51.505, -0.09], 13);
+    mapa = document.querySelector("#mapid");
+    
 	mymap = L.map("mapid").setView([-34.616, -58.44], 16);
 
-	/*
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    	maxZoom: 18,
-    	id: 'mapbox/streets-v11',
-    	accessToken: 'your.mapbox.access.token'
-	}).addTo(mymap);
-	*/
-
-	googleStreets.addTo(mymap);
+    //googleStreets.addTo(mymap);
+    //roads.addTo(mymap);
+    osmStreets.addTo(mymap);
 
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
-	//L.Control.geocoder().addTo(mymap);
+	L.Control.geocoder().addTo(mymap);
 
 	// Add in a crosshair for the map
 	var crosshairIcon = L.icon({
@@ -57,6 +56,8 @@ window.addEventListener("load",function(){
 		crosshair.setLatLng(mymap.getCenter());
 	});
 
+    // tomar foto (funciona solo para la compu)
+    /*
 	var streaming = false,
 	video        = document.querySelector('#video'),
 	canvas       = document.querySelector('#canvas'),
@@ -70,8 +71,7 @@ window.addEventListener("load",function(){
 						navigator.mozGetUserMedia ||
 						navigator.msGetUserMedia);
 
-	navigator.getMedia(
-	{
+	navigator.getMedia({
 		video: true,
 		audio: false
 	},
@@ -87,31 +87,30 @@ window.addEventListener("load",function(){
 	},
 	function(err) {
 		console.log("An error occured! " + err);
-	}
-	);
+	});
 
 	video.addEventListener('canplay', function(ev){
-	if (!streaming) {
-		height = video.videoHeight / (video.videoWidth/width);
-		video.setAttribute('width', width);
-		video.setAttribute('height', height);
-		canvas.setAttribute('width', width);
-		canvas.setAttribute('height', height);
-		streaming = true;
-	}
-	}, false);
+        if (!streaming) {
+            height = video.videoHeight / (video.videoWidth/width);
+            video.setAttribute('width', width);
+            video.setAttribute('height', height);
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            streaming = true;
+        }
+    }, false);
 
 	function takepicture() {
-	canvas.width = width;
-	canvas.height = height;
-	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-	var data = canvas.toDataURL('image/png');
-	photo.setAttribute('src', data);
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+        var data = canvas.toDataURL('image/png');
+        photo.setAttribute('src', data);
 	}
 
 	startbutton.addEventListener('click', function(ev){
 		takepicture();
-	ev.preventDefault();
+	    ev.preventDefault();
 	}, false);
 
 	
@@ -121,7 +120,7 @@ window.addEventListener("load",function(){
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
-	}
+	}*/
 });
 
 
