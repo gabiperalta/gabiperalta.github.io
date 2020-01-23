@@ -1,1 +1,50 @@
-"Hello World" 
+<!DOCTYPE html>
+<html>
+    <header>
+        <style>
+        
+        .cuadro_mapa{
+            border-radius: 10px;
+            border: 2px darkred solid;
+            height: 380px;
+            /*position: relative;*/
+        }
+        .container{
+            position: relative;
+        }
+        .overlay {     
+            width: 100px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;      
+            background-color: rgba(255, 50, 50, 0.5);     
+        }
+        
+        </style>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+        <script src="prueba.js"></script>
+
+    </header>
+    <body>
+        <div class="container">
+            <div id="mapid" class="cuadro_mapa"></div>
+            <video id="video"></video>
+            <button id="startbutton">Take photo</button>
+            <canvas id="canvas"></canvas>
+            <img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
+        </div>
+    </body>
+</html>
