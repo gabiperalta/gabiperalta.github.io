@@ -8,7 +8,7 @@ var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={
 //	type: 'roadmap'	// valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
 //});
 
-var osmStreets = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+var osmStreets = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; DAI(derivado de OSM)'
 });
 
