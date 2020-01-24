@@ -23,14 +23,14 @@ window.addEventListener("load",function(){
     
 	mymap = L.map("mapid").setView([-34.616, -58.44], 16);
 
-    //googleStreets.addTo(mymap);
+    googleStreets.addTo(mymap);
     //roads.addTo(mymap);
-    osmStreets.addTo(mymap);
+    //osmStreets.addTo(mymap);
 
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
 	// ubicacion actual
-	/*
+	
 	function onLocationFound(e) {
 		var radius = e.accuracy;
 		L.marker(e.latlng).addTo(mymap)
@@ -46,9 +46,10 @@ window.addEventListener("load",function(){
 	
 	mymap.on('locationerror', onLocationError);
 	mymap.locate({setView: true, maxZoom: 16});
-	*/
+	
 
-	L.Control.geocoder().addTo(mymap);
+	/*
+	//L.Control.geocoder().addTo(mymap);
 	var geocoder = L.Control.geocoder({
 		defaultMarkGeocode: false	
 	})
@@ -63,7 +64,7 @@ window.addEventListener("load",function(){
 		mymap.fitBounds(poly.getBounds());
 	})
 	.addTo(mymap);
-
+	*/
 
 	// Pin en el centro del mapa
 	var crosshairIcon = L.icon({
@@ -87,7 +88,7 @@ window.addEventListener("load",function(){
 			console.log(direccion.value);
 			console.log(result);
 			mymap.setView([result[0].center.lat, result[0].center.lng], 16);
-			direccion.value = result[0].name;
+			direccion.value = result[0].name.split(", ")[1] + " " + result[0].name.split(", ")[0];
 		})
 	});
 
