@@ -28,9 +28,10 @@ window.addEventListener("load",function(){
     
 	mymap = L.map("mapid").setView([-34.616, -58.44], 16);
 
-    googleStreets.addTo(mymap);
+    //googleStreets.addTo(mymap);
     //roads.addTo(mymap);
-    //osmStreets.addTo(mymap);
+	//osmStreets.addTo(mymap);
+	openStreetMap.addTo(mymap);
 
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
