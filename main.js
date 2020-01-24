@@ -103,7 +103,7 @@ window.addEventListener("load",function(){
 	});
 
     // tomar foto (funciona solo para la compu)
-    
+    /*
 	var streaming = false,
 	video        = document.querySelector('#video'),
 	canvas       = document.querySelector('#canvas'),
@@ -167,7 +167,7 @@ window.addEventListener("load",function(){
 		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
 	}
-	
+	*/
 });
 
 
