@@ -14,7 +14,7 @@ var osmStreets = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-	maxZoom: 20
+	maxZoom: 16
  });
 
 var mymap;
@@ -58,8 +58,18 @@ window.addEventListener("load",function(){
 		getLocationLeaflet(); // llamar a esta funcion en el load para que se obtenga la ubicacion al momento de abrir el html
 	});
 
+	
+	L.Control.geocoder({
+		defaultMarkGeocode: false
+	})
+	.on("markgeocode",function(e){
+		console.log(e);
+		mymap.setView(e.geocode.center,16);
+	})
+	.addTo(mymap);
+
+	L.control.locate().addTo(mymap);
 	/*
-	//L.Control.geocoder().addTo(mymap);
 	var geocoder = L.Control.geocoder({
 		defaultMarkGeocode: false	
 	})
@@ -90,6 +100,7 @@ window.addEventListener("load",function(){
 	});
 
 	// Buscar una direccion
+	/*
 	var direccion = document.querySelector("#direccion");
 	var buscar_direccion = document.querySelector("#buscar_direccion");
 	buscar_direccion.addEventListener("click",()=>{
@@ -101,6 +112,7 @@ window.addEventListener("load",function(){
 			direccion.value = result[0].name.split(", ")[1] + " " + result[0].name.split(", ")[0];
 		})
 	});
+	*/
 
     // tomar foto (funciona solo para la compu)
     /*

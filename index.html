@@ -51,6 +51,12 @@
         <!-- Con esto uso la api de google maps de manera oficial 
         <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
         -->
+
+        <!-- Boton de localizacion dentro del div -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -59,8 +65,6 @@
     </header>
     <body>
         <div id="mapid" class="cuadro_mapa"></div>
-        <input type="text" id="direccion" class="cuadro_mapa">
-        <button id="buscar_direccion" class="cuadro_mapa">Buscar</button>
         <input id="localizar" type="button" value="Localizar" >
         <br>
         <input type="file" accept="image/*" capture="camera" />
