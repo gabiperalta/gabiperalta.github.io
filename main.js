@@ -30,7 +30,7 @@ window.addEventListener("load",function(){
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
 	// ubicacion actual
-	
+	/*
 	function onLocationFound(e) {
 		var radius = e.accuracy;
 		L.marker(e.latlng).addTo(mymap)
@@ -46,7 +46,27 @@ window.addEventListener("load",function(){
 	
 	mymap.on('locationerror', onLocationError);
 	mymap.locate({setView: true, maxZoom: 16});
-	
+	*/
+	function onLocationFound(e) {
+		var radius = e.accuracy / 2;
+		var location = e.latlng
+		L.marker(location).addTo(mymap)
+		L.circle(location, radius).addTo(mymap);
+	}
+
+	function onLocationError(e) {
+		alert(e.message);
+	}
+
+	function getLocationLeaflet() {
+		mymap.on('locationfound', onLocationFound);
+		mymap.on('locationerror', onLocationError);
+		mymap.locate({setView: true, maxZoom: 16});
+	}
+
+	document.querySelector("#localizar").addEventListener("click",function(){
+		getLocationLeaflet();
+	});
 
 	/*
 	//L.Control.geocoder().addTo(mymap);
