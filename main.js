@@ -1,5 +1,5 @@
 
-var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+var googleStreets = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
 	subdomains:['mt0','mt1','mt2','mt3']
 });
@@ -11,6 +11,11 @@ var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={
 var osmStreets = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; DAI(derivado de OSM)'
 });
+
+var openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+	maxZoom: 20
+ });
 
 var mymap;
 var mapa;
