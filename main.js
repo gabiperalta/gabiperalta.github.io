@@ -50,8 +50,9 @@ window.addEventListener("load",function(){
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
 		var location = e.latlng
-		L.marker(location).addTo(mymap)
+		//L.marker(location).addTo(mymap)
 		L.circle(location, radius).addTo(mymap);
+		//mymap.setView(location, 16);
 	}
 
 	function onLocationError(e) {
