@@ -36,29 +36,12 @@ window.addEventListener("load",function(){
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
 	// ubicacion actual
-	/*
-	function onLocationFound(e) {
-		var radius = e.accuracy;
-		L.marker(e.latlng).addTo(mymap)
-			.bindPopup("Estas a menos de " + radius + " metros de este punto").openPopup();
-		L.circle(e.latlng, radius).addTo(mymap);
-	}
-	
-	mymap.on('locationfound', onLocationFound);
-
-	function onLocationError(e) {
-		alert(e.message);
-	}
-	
-	mymap.on('locationerror', onLocationError);
-	mymap.locate({setView: true, maxZoom: 16});
-	*/
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
 		var location = e.latlng
 		//L.marker(location).addTo(mymap)
-		L.circle(location, radius).addTo(mymap);
-		//mymap.setView(location, 16);
+		//L.circle(location, radius).addTo(mymap);
+		mymap.setView(location, 16);
 	}
 
 	function onLocationError(e) {
@@ -72,7 +55,7 @@ window.addEventListener("load",function(){
 	}
 
 	document.querySelector("#localizar").addEventListener("click",function(){
-		getLocationLeaflet();
+		getLocationLeaflet(); // llamar a esta funcion en el load para que se obtenga la ubicacion al momento de abrir el html
 	});
 
 	/*
@@ -120,7 +103,7 @@ window.addEventListener("load",function(){
 	});
 
     // tomar foto (funciona solo para la compu)
-    /*
+    
 	var streaming = false,
 	video        = document.querySelector('#video'),
 	canvas       = document.querySelector('#canvas'),
@@ -183,7 +166,8 @@ window.addEventListener("load",function(){
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
-	}*/
+	}
+	
 });
 
 
