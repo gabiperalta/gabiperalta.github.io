@@ -1,15 +1,4 @@
-/*
-var v = {
-	date_created : "2019-04-11 13:51:16.310"
-};
-if (v.date_created==null){
-	v.date_created = '';
-} 
-else{
-    var lista = v.date_created.split('-',3);
-	document.write(lista[2].split(' ',1),lista[1],lista[0]);
-}
-*/
+
 var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 	maxZoom: 20,
 	subdomains:['mt0','mt1','mt2','mt3']
@@ -40,12 +29,12 @@ window.addEventListener("load",function(){
 
 	//var punto = L.marker([-34.616, -58.44]).addTo(mymap);
 
+	// ubicacion actual
+	/*
 	function onLocationFound(e) {
 		var radius = e.accuracy;
-	
 		L.marker(e.latlng).addTo(mymap)
 			.bindPopup("Estas a menos de " + radius + " metros de este punto").openPopup();
-	
 		L.circle(e.latlng, radius).addTo(mymap);
 	}
 	
@@ -56,23 +45,50 @@ window.addEventListener("load",function(){
 	}
 	
 	mymap.on('locationerror', onLocationError);
-
 	mymap.locate({setView: true, maxZoom: 16});
+	*/
 
 	L.Control.geocoder().addTo(mymap);
+	var geocoder = L.Control.geocoder({
+		defaultMarkGeocode: false	
+	})
+	.on('markgeocode', function(e) {
+		var bbox = e.geocode.bbox;
+		var poly = L.polygon([
+		bbox.getSouthEast(),
+		bbox.getNorthEast(),
+		bbox.getNorthWest(),
+		bbox.getSouthWest()
+		]).addTo(mymap);
+		mymap.fitBounds(poly.getBounds());
+	})
+	.addTo(mymap);
 
-	// Add in a crosshair for the map
+
+	// Pin en el centro del mapa
 	var crosshairIcon = L.icon({
 		iconUrl: 'Imagenes/pin-rojo.png',
-		iconSize:     [50, 50], // size of the icon
-		iconAnchor:   [25, 50], // point of the icon which will correspond to marker's location
+		iconSize:     [50, 50], // tamano del icono
+		iconAnchor:   [25, 50], // punto del icono que corresponde al centro del mapa
 	});
 	crosshair = new L.marker(mymap.getCenter(), {icon: crosshairIcon, clickable:false});
 	crosshair.addTo(mymap);
 
-	// Move the crosshair to the center of the map when the user pans
 	mymap.on('move', function(e) {
 		crosshair.setLatLng(mymap.getCenter());
+	});
+
+	// Buscar una direccion
+	var direccion = document.querySelector("#direccion");
+	var buscar_direccion = document.querySelector("#buscar_direccion");
+	buscar_direccion.addEventListener("click",()=>{
+		var geocodigo = new L.Control.Geocoder.Nominatim(); //direccion.innerHTML
+		geocodigo.geocode(direccion.value,function(result){
+			console.log(direccion.value);
+			console.log(result);
+			mymap.setView([result[0].center.lat, result[0].center.lng], 16);
+			direccion.value = result[0].name;
+		})
 	});
 
     // tomar foto (funciona solo para la compu)
